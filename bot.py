@@ -58,4 +58,4 @@ async def userinfo(ctx, userName: discord.Member = None):
     print("<userinfo <user>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
-    client.run(os.environ['BOT_TOKEN'])
+client.run(os.environ['BOT_TOKEN'])
