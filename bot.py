@@ -58,4 +58,43 @@ async def userinfo(ctx, userName: discord.Member = None):
     print("<userinfo <user>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# serverinfo
+@client.command(pass_context=True)
+async def serverinfo(ctx):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xe3e550, description= "")
+    msg.title = ":closed_book: Server Information :closed_book:"
+    msg.add_field(name="MEMBERS", value=(len(ctx.message.server.members)), inline=True)
+    msg.add_field(name="CHANNELS", value=(len(ctx.message.server.channels)), inline=True)
+    msg.add_field(name="EMOJIS", value=(len(ctx.message.server.emojis)), inline=True)
+    msg.add_field(name="ID", value=(ctx.message.server.id), inline=True)
+    msg.add_field(name="REGION", value=(ctx.message.server.region), inline=True)
+    msg.add_field(name="ROLES", value=(len(ctx.message.server.roles)), inline=True)
+    msg.add_field(name="OWNER", value=(ctx.message.server.owner), inline=True)
+    msg.add_field(name="RELEASE DATE:", value="23th of March 2018", inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("<serverinfo")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+# <echo <text>
+@client.command(pass_context=True)
+async def say(ctx, *, args=None): 
+    staff_role = discord.utils.get(ctx.message.server.roles, name='Staff')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xe3e550, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if staff_role in author.roles or staff_role in author.roles:
+        if args == None:
+            msg.add_field(name=":warning: ", value="i!say <text>")
+            await client.say(embed=msg)
+        else:
+            await client.say("{}".format(args))
+            await client.delete_message(ctx.message)
+    else:
+        msg.add_field(name=":warning: ", value="`This command can only be used by Staff!`")
+        await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
