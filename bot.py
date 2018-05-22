@@ -555,7 +555,7 @@ async def warn(ctx, userName: discord.Member = None, *, args = None):
                 msg.add_field(name=":warning: ", value="`You cannot warn other staff!`")
                 await client.say(embed=msg)
             else:
-                msg2.add_field(name=":pencil: ", value="`You have been warned by {} in Violets!`\n`Reason: {}`".format(author.display_name, args))
+                msg2.add_field(name=":pencil: ", value="`You have been warned by {} in Limited Infinity™!`\n`Reason: {}`".format(author.display_name, args))
                 msg.add_field(name=":pencil: ", value="`{} warned {}!`\n`Reason: {}`".format(author.display_name, userName.display_name, args))
                 await client.say(embed=msg)
                 await client.send_message(userName, embed=msg2)
