@@ -399,4 +399,35 @@ async def report(ctx, userName: discord.Member = None, *, args = None):
     print("}report <user> <reason>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# }idban <user id> [reason]
+@client.command(pass_context=True)
+async def idban(ctx, userID: int = None, *, args = None):
+    helper_role = discord.utils.get(ctx.message.server.roles, name='Administrator')
+    mod_role = discord.utils.get(ctx.message.server.roles, name='Administrator')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='Administrator')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='Co Owner')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='Owner')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xe3e550, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userID == None:
+            msg.add_field(name=":warning: ", value="`i!idban <userID> <reason>`")
+        elif user == None and args is not None:
+            msg.add_field(name=":tools: ", value="`{} ID-Banned the following ID: {}!`\n`Reason: {}`".format(author.display_name, userID, args))
+            await client.http.ban(userID, guild.id, 0)
+        elif user == None and args == None:
+            msg.add_field(name=":tools: ", value="`{} ID-Banned the following ID: {}!`\n`Reason: ?`".format(author.display_name, userID))
+            await client.http.ban(userID, guild.id, 0)
+        else:
+            msg.add_field(name=":warning: ", value="`Unknown error!`")
+    else:
+        msg.add_field(name=":warning: ", value="`This command can only be used by Admin+!`")
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}idban <user id> [reason]")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
