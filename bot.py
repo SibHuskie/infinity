@@ -390,8 +390,8 @@ async def report(ctx, userName: discord.Member = None, *, args = None):
     if userName == None or args == None:
         msg.add_field(name=":warning: ", value="`i!report <user> <reason>`")
     else:
-        msg.add_field(name=":clipboard: REPORT", value="`{} has reported {}!`".format(author.display_name, userName.display_name))
-        msg2.add_field(name=":clipboard: REPORT", value="Reporter:\n`{}` ### `{}`\n Reported:\n`{}` ### `{}`\n Reason:\n`{}`".format(author, author.id, userName, userName.id, args))
+        msg.add_field(name=":clipboard: **REPORT**", value="`{} has reported {}!`".format(author.display_name, userName.display_name))
+        msg2.add_field(name=":clipboard: **REPORT**", value="**Reporter:**\n`{}` ### `{}`\n **Reported:**\n`{}` ### `{}`\n **Reason:**\n`{}`".format(author, author.id, userName, userName.id, args))
         channel = client.get_channel('447801494855745547')
         await client.send_message(channel, embed=msg2)
     await client.say(embed=msg)
