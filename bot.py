@@ -672,4 +672,42 @@ async def ban(ctx, userName: discord.Member = None, *, args = None):
     print("}ban <user> [reason]")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# }rps <rock/paper/scissors>
+@client.command(pass_context=True)
+async def rps(ctx, args=None):
+    choice = random.choice(choices)
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xe3e550, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if args == None:
+        msg.add_field(name=":warning: ", value="`i!rps <rock/paper/scissors>`")
+    elif args == "rock" or args == "paper" or args == "scissors":
+        msg.add_field(name=":fist: :raised_hand: :v: ROCK PAPER SCISSORS :v: :raised_hand: :fist: ", value="**~~=================================~~**\n:arrow_forward: `{}`: {}\n:arrow_forward: `BOT`: {}\n**~~=================================~~**".format(author.display_name, args, choice), inline=True)
+        if args == "rock" and choice == "scissors":
+            msg.add_field(name=":diamonds: W I N N E R :diamonds: ", value="`{}`\n**~~=================================~~**".format(author.display_name), inline=True)
+        elif args == "paper" and choice == "rock":
+            msg.add_field(name=":diamonds: W I N N E R :diamonds: ", value="`{}`\n**~~=================================~~**".format(author.display_name), inline=True)
+        elif args == "scissors" and choice == "paper":
+            msg.add_field(name=":diamonds: W I N N E R :diamonds: ", value="`{}`\n**~~=================================~~**".format(author.display_name), inline=True)
+        elif args == "rock" and choice == "paper":
+            msg.add_field(name=":diamonds: W I N N E R :diamonds: ", value="`BOT`\n**~~=================================~~**", inline=True)
+        elif args == "paper" and choice == "scissors":
+            msg.add_field(name=":diamonds: W I N N E R :diamonds: ", value="`BOT`\n**~~=================================~~**", inline=True)
+        elif args == "scissors" and choice == "rock":
+            msg.add_field(name=":diamonds: W I N N E R :diamonds: ", value="`BOT`\n**~~=================================~~**", inline=True)
+        elif args == "rock" and choice == "rock":
+            msg.add_field(name=":diamonds: W I N N E R :diamonds: ", value="It's a tie!\n**~~=================================~~**", inline=True)
+        elif args == "paper" and choice == "paper":
+            msg.add_field(name=":diamonds: W I N N E R :diamonds: ", value="It's a tie!\n**~~=================================~~**", inline=True)
+        else:
+            msg.add_field(name=":diamonds: W I N N E R :diamonds: ", value="It's a tie!\n**~~=================================~~**", inline=True)
+    else:
+        msg.add_field(name=":warning: ", value="`i!rps <rock/paper/scissors>`")
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}rps <rock/paper/scissors>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
