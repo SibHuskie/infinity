@@ -531,4 +531,35 @@ async def kick(ctx, userName: discord.Member = None, *, args = None):
     else:
         msg.add_field(name=":warning: ", value="`This command can only be used by Moderators, Administrators, Co Owners and Owners!`")
     await client.say(embed=msg)
+    
+@client.command(pass_context=True)
+async def warn(ctx, userName: discord.Member = None, *, args = None):
+    helper_role = discord.utils.get(ctx.message.server.roles, name='Helper')
+    mod_role = discord.utils.get(ctx.message.server.roles, name='Moderator')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='Administrator')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='Co Owner')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='Owner')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xe3e550, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    msg2 = discord.Embed(colour=0xe3e550, description= "")
+    msg2.title = ""
+    msg2.set_footer(text=footer_text)
+    if helper_role in author.roles or mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userName == None or args == None:
+            msg.add_field(name=":warning: ", value="`i!warn <user> <reason>`")
+            await client.say(embed=msg)
+        else:
+            if helper_role in userName.roles or mod_role in userName.roles or admin_role in userName.roles or manager_role in userName.roles or owner_role in userName.roles:
+                msg.add_field(name=":warning: ", value="`You cannot warn other staff!`")
+                await client.say(embed=msg)
+            else:
+                msg2.add_field(name=":pencil: ", value="`You have been warned by {} in Violets!`\n`Reason: {}`".format(author.display_name, args))
+                msg.add_field(name=":pencil: ", value="`{} warned {}!`\n`Reason: {}`".format(author.display_name, userName.display_name, args))
+                await client.say(embed=msg)
+                await client.send_message(userName, embed=msg2)
+    else:
+        msg.add_field(name=":warning: ", value="`This command can only be used by staff!`")
+        await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
