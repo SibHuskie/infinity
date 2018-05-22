@@ -710,4 +710,6 @@ async def rps(ctx, args=None):
     print("}rps <rock/paper/scissors>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+choices = ["rock", "paper", "scissors"]
 client.run(os.environ['BOT_TOKEN'])
