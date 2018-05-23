@@ -6,6 +6,8 @@ import random
 import time
 import os
 import safygiphy
+import requests
+import io
 
 client = commands.Bot(command_prefix="i!")
 footer_text = "Limited Infinity™"
