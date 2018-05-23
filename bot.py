@@ -5,8 +5,6 @@ import asyncio
 import random
 import time
 import os
-import requests
-import safygiphy
 
 client = commands.Bot(command_prefix="i!")
 footer_text = "Limited Infinity™"
@@ -750,16 +748,4 @@ attacks = ["Punches the opponent :punch: ", "Kicks the opponent :boot: ", "Throw
            "Drives over the opponent :red_car: ", "Chops off the opponent's leg :crossed_swords: ", "Drains some of the opponent's life :broken_heart: ", "Steals the opponent's soul :black_heart: ", "Stuns the opponent :octagonal_sign: ",
            "Uses nuclear energy to attack the opponent :radioactive: ", "Blinds the opponent :eye: ", "Deafens the opponent :ear: ", "Uses mind control on the opponent :alien: ", "Summons minions to attack the opponent :busts_in_silhouette: ",
            "Traps the opponent :spider_web: "] 
-
-@client.event
-async def on_message(message):
-    if message.content.lower().startswith('i!test'):
-        await client.send_message(message.channel, "Testing 1 2 3...")
-
-    if message.content.lower().startswith('i!coin'): #Coinflip 50/50% chance kopf oder zahl
-        choice = random.randint(1,2)
-        if choice == 1:
-            await client.add_reaction(message, '🌑')
-        if choice == 2:
-            await client.add_reaction(message, '🌕')
 client.run(os.environ['BOT_TOKEN'])
