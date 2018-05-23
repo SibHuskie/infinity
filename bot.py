@@ -754,8 +754,9 @@ attacks = ["Punches the opponent :punch: ", "Kicks the opponent :boot: ", "Throw
 # EVENT - JOIN / LEAVE
 @client.async_event
 async def on_member_join(member):
-    joins = ["**Welcome to Limited Infinity™ {}! :sparkles: Please make sure to read the rules and if you want to partner, contact any of the staff with the role Partnership Manager :smiley: Also don't forget to get the no partner role in the #✧》self-roles  channel :wink: Enjoy your stay :sparkling_heart:".format(member.mention)]
-    await client.send_message(client.get_channel("446349220149198859"))
+    serverchannel = member.server.default_channel
+    msg = "Willkommen {0} auf {1}".format(member.mention, member.server.name)
+    await client.send_message(serverchannel, msg)
     print("============================================================")
     print("JOIN EVENT")
     print("{} ### {}".format(userName, userName.id))
