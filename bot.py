@@ -755,5 +755,5 @@ attacks = ["Punches the opponent :punch: ", "Kicks the opponent :boot: ", "Throw
 async def on_member_join(member):
     serverchannel = member.server.default_channel
     msg = "Welcome {0} to {1}".format(member.mention, member.server.name)
-    await client.send_message(serverchannel, msg)
+    await client.send_message(client.get_channel("446349220149198859"), "{}".format(random.choice(joins)))
 client.run(os.environ['BOT_TOKEN'])
