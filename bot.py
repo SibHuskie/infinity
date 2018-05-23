@@ -9,6 +9,7 @@ import safygiphy
 import requests
 import io
 
+g = safygiphy.Giphy()
 client = commands.Bot(command_prefix="i!")
 footer_text = "Limited Infinity™"
 
