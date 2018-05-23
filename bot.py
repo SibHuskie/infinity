@@ -5,6 +5,8 @@ import asyncio
 import random
 import time
 import os
+import io
+import requests
 
 client = commands.Bot(command_prefix="i!")
 footer_text = "Limited Infinity™"
