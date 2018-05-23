@@ -751,13 +751,15 @@ attacks = ["Punches the opponent :punch: ", "Kicks the opponent :boot: ", "Throw
            "Uses nuclear energy to attack the opponent :radioactive: ", "Blinds the opponent :eye: ", "Deafens the opponent :ear: ", "Uses mind control on the opponent :alien: ", "Summons minions to attack the opponent :busts_in_silhouette: ",
            "Traps the opponent :spider_web: "] 
 
-# EVENT - JOIN / LEAVE
-@client.async_event
-async def on_member_join(userName: discord.User):
-    joins = ["**Welcome to Limited Infinity™ {}! :sparkles: Please make sure to read the rules and if you want to partner, contact any of the staff with the role Partnership Manager :smiley: Also don't forget to get roles and colors in the self role channel :wink: Enjoy your stay :sparkling_heart:**".format(userName)]
-    await client.send_message(client.get_channel("446349220149198859"), "{}".format(random.choice(joins)))
-    print("============================================================")
-    print("JOIN EVENT")
-    print("{} ### {}".format(userName, userName.id))
-    print("============================================================")
+@client.event
+async def on_message(message):
+    if message.content.lower().startswith('i!test'):
+        await client.send_message(message.channel, "Testing 1 2 3...")
+
+    if message.content.lower().startswith('i!coin'): #Coinflip 50/50% chance kopf oder zahl
+        choice = random.randint(1,2)
+        if choice == 1:
+            await client.add_reaction(message, '🌑')
+        if choice == 2:
+            await client.add_reaction(message, '🌕')
 client.run(os.environ['BOT_TOKEN'])
