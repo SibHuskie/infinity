@@ -752,13 +752,9 @@ attacks = ["Punches the opponent :punch: ", "Kicks the opponent :boot: ", "Throw
            "Traps the opponent :spider_web: "] 
 
 # EVENT - JOIN / LEAVE
-@client.async_event
+@client.event
 async def on_member_join(member):
     serverchannel = member.server.default_channel
     msg = "Willkommen {0} auf {1}".format(member.mention, member.server.name)
     await client.send_message(serverchannel, msg)
-    print("============================================================")
-    print("JOIN EVENT")
-    print("{} ### {}".format(userName, userName.id))
-    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
