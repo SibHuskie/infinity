@@ -751,9 +751,13 @@ attacks = ["Punches the opponent :punch: ", "Kicks the opponent :boot: ", "Throw
            "Uses nuclear energy to attack the opponent :radioactive: ", "Blinds the opponent :eye: ", "Deafens the opponent :ear: ", "Uses mind control on the opponent :alien: ", "Summons minions to attack the opponent :busts_in_silhouette: ",
            "Traps the opponent :spider_web: "] 
 
-@client.event
-async def on_member_join(member):
-    serverchannel = member.server.default_channel
-    msg = "Welcome {0} to {1}".format(member.mention, member.server.name)
+# EVENT - JOIN / LEAVE
+@client.async_event
+async def on_member_join(userName: discord.User):
+    joins = ["**Welcome to Limited Infinity™ {0}! :sparkles: Please make sure to read the rules and if you want to partner, contact any of the staff with the role Partnership Manager :smiley: Also don't forget to get the no partner role in the #✧》self-roles  channel :wink: Enjoy your stay :sparkling_heart:".format(member.mention)]
     await client.send_message(client.get_channel("446349220149198859"), "{}".format(random.choice(joins)))
+    print("============================================================")
+    print("JOIN EVENT")
+    print("{} ### {}".format(userName, userName.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
