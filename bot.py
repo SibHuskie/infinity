@@ -754,4 +754,33 @@ attacks = ["Punches the opponent :punch: ", "Kicks the opponent :boot: ", "Throw
            "Drives over the opponent :red_car: ", "Chops off the opponent's leg :crossed_swords: ", "Drains some of the opponent's life :broken_heart: ", "Steals the opponent's soul :black_heart: ", "Stuns the opponent :octagonal_sign: ",
            "Uses nuclear energy to attack the opponent :radioactive: ", "Blinds the opponent :eye: ", "Deafens the opponent :ear: ", "Uses mind control on the opponent :alien: ", "Summons minions to attack the opponent :busts_in_silhouette: ",
            "Traps the opponent :spider_web: "] 
+
+# }embed <title> <description> <field name> <field value> <footer>
+@client.command(pass_context=True)
+async def embed(ctx, title = None, desc = None, name = None, value = None, footer = None):
+    admin_role = discord.utils.get(ctx.message.server.roles, name='Administrator')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='Co Owner')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='Owner')
+    author = ctx.message.author
+    if admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if title == None or desc == None or name == None or value == None or footer == None:
+            msg = discord.Embed(colour=0xe3e550, description= "")
+            msg.title = ""
+            msg.set_footer(text=footer_text)
+            msg.add_field(name=":warning: ", value="`i!embed <title> <description> <field name> <field value> <footer>`")
+        else:
+            msg = discord.Embed(colour=0xe3e550, description= "{}".format(desc))
+            msg.title = "{}".format(title)
+            msg.set_footer(text="{}".format(footer))
+            msg.add_field(name="{}".format(name), value="{}".format(value))
+    else:
+        msg = discord.Embed(colour=0x210150, description= "")
+        msg.title = ""
+        msg.set_footer(text=footer_text)
+        msg.add_field(name=":warning: ", value="`This command can only be used by Administrators, Co Owners and Owners!`")
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}embed <title> <description> <field name> <field value> <footer>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
