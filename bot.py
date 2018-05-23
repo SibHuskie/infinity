@@ -5,7 +5,6 @@ import asyncio
 import random
 import time
 import os
-import io
 import requests
 import safygiphy
 
