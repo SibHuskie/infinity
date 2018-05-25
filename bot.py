@@ -788,8 +788,9 @@ async def embed(ctx, title = None, desc = None, name = None, value = None, foote
 @client.async_event
 async def on_member_join(member):
     msg = "Welcome to {1}! 🎉 {0}. Make sure to read <#446594082731720705> and get some roles in <#448456540597256192> feel free to DM the owner for queries and enjoy your stay here 😉 ".format(member.mention, member.server.name)
-    channel = discord.utils.get(id="446349220149198859", client.get_all_channels())
-    await client.send_message(channel, msg)
+    server = member.server
+    channel = discord.utils.get(id="446349220149198859", server.channels)
+    await client.send_message(channel, msg))
     print("============================================================")
     print("JOIN EVENT")
     print("{} ### {}".format(userName, userName.id))
