@@ -17,11 +17,16 @@ async def on_ready():
     print("---------------")
     await client.change_presence(game=discord.Game(name='on Limited Infinity™'))
 
-@client.event
+# EVENT - JOIN / LEAVE
+@client.async_event
 async def on_member_join(member):
-    serverchannel = member.server.default_channel
-    msg = "Willkommen {0} auf {1}".format(member.mention, member.server.name)
-    await client.send_message(serverchannel, msg)
+    msg = "Welcome to {1}! 🎉 {0}. Make sure to read <#446594082731720705> and get some roles in <#448456540597256192> feel free to DM the owner for queries and enjoy your stay here 😉 ".format(member.mention, member.server.name)
+    channel = discord.utils.get(name="✧》main-chat", member.server.channels)
+    await client.send_message(channel, msg)
+    print("============================================================")
+    print("JOIN EVENT")
+    print("{} ### {}".format(userName, userName.id))
+    print("============================================================")
 
 # serverinfo
 @client.command(pass_context=True)
