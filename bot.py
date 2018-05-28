@@ -781,7 +781,7 @@ async def embed(ctx, title = None, desc = None, name = None, value = None, foote
 # EVENT - JOIN / LEAVE
 @client.async_event
 async def on_member_join(member):
-    joins = ["**Welcome to Limited Infinity™ {}! :sparkles: \nPlease make sure to read the rules and if you want to partner, contact any of the staff with the role Partnership Manager :smiley:\nAlso don't forget to get roles in <#448456540597256192> and read the rules! <#446594082731720705> :wink: \nEnjoy your stay :sparkling_heart:**".format(member)]
+    joins = ["**Welcome to Limited Infinity™ {}! :sparkles: \nPlease make sure to read the rules and if you want to partner, contact any of the staff with the role Partnership Manager :smiley:\nAlso don't forget to get roles in <#448456540597256192> and read the rules! <#446594082731720705> :wink: \nEnjoy your stay :sparkling_heart:**".format(member.mention)]
     await client.send_message(client.get_channel("446349220149198859"), "{}".format(random.choice(joins)))
     print("============================================================")
     print("JOIN EVENT")
